@@ -35,6 +35,13 @@ A python script to play sound effects when a certain command is typed in the use
 ## Usage
 - Run from IDE or from terminal/shell by cd into the project path and running with "python main.py" alternatively "python3 main.py"
 
+## Possible future improvements
+- Layering sound, currently sounds cut eachother off (can be configured to play in queue) but a wall of noise could be interesting
+- Cooldowns to stop chatters from playing more than X sounds a minute
+- Logging to see which sounds are played the most/least
+- Per chat volume scaling ie. "!sound 10" would play sound at 10% volume
+- Stream overlay integration to pair a visual to the sound
+
 
 ## Acknowledgments
 
