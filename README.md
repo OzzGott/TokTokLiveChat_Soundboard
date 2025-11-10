@@ -38,5 +38,5 @@ A python script to play sound effects when a certain command is typed in the use
 
 ## Acknowledgments
 
-This project uses [TikTokLive](https://github.com/isaackogan/TikTok-Live-Python),
+This project uses [TikTokLive](https://github.com/isaackogan/TikTokLive/),
 an open-source library licensed under the MIT License.
