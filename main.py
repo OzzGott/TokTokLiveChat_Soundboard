@@ -3,12 +3,16 @@
 from TikTokLive import TikTokLiveClient
 from TikTokLive.events import CommentEvent
 from TikTokLive.client.web.web_settings import WebDefaults
-from pydub import AudioSegment
-import sounddevice as sd
-import threading
 import secret
-import numpy as np
+import pygame.mixer as mixer
 
+# Initialize the pygame mixer with set values, 16 sounds can be played at once
+mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
+mixer.set_num_channels(16)
+
+# Path for audio files and name of device, can be found with sd.query_devices()
+audio_path = r"C:\Users\usr\Documents\projects\tiktok\sounds\\"
+output_device_name = "Headphones (Realtek(R) Audio), MME"
 
 # User cookies in dictory imported from "secret" python file - not necessarily needed
 ttwid = secret.ttwid
@@ -38,12 +42,7 @@ keyword_dict = {
 def on_comment(event: CommentEvent):
     if event.comment.strip().lower() in keyword_dict:
         keyword = event.comment.strip().lower()
-        threading.Thread(target=kw_to_sound(keyword), daemon=True).start()
-
-
-# Path for audio files and name of device, can be found with sd.query_devices()
-audio_path = r"C:\Users\usr\Documents\projects\tiktok\sounds\\"
-output_device_name = "Headphones (Realtek(R) Audio), MME"
+        kw_to_sound(keyword)
 
 
 # Takes keyword, appends corresponding filename to path and calls play_sound with the full path
@@ -55,13 +54,8 @@ def kw_to_sound(kw):
 
 # Plays the sound effect from the chosen output device
 def play_sound(path):
-    audio = AudioSegment.from_file(path, format="mp3")
-    samples = np.array(audio.get_array_of_samples()).astype(np.float32)
-    samples = samples / np.max(np.abs(samples))
-    if audio.channels == 2:
-        samples = samples.reshape((-1, 2))
-
-    sd.play(samples, samplerate=audio.frame_rate, device=output_device_name, blocking=False)
+    sound = mixer.Sound(path)
+    sound.play
 
 
 client.run()
