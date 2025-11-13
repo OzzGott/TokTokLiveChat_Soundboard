@@ -13,7 +13,7 @@ A python script to play sound effects when a certain command is typed in the use
 
 - **Python 3.9+**
 - A TikTok account that can go live
-- TikTokLive library version **≥ 6.6.5**
+- TikTokLive library version **≥ 6.6.5** && pygame (both can be found in dependencies)
 - FFmpeg installed (for MP3 decoding)
 
 ## Installation
@@ -21,7 +21,7 @@ A python script to play sound effects when a certain command is typed in the use
 - Install dependencies if not already installed
 
 ## Dependencies
-- Install dependencies with 'pip install TikTokLive pydub sounddevice'
+- Install dependencies with 'pip install TikTokLive pygame'
 - Download FFmpeg either with brew (macOS), apt (Linux) or from ffmpeg.org (Windows)
 
 ## Authentication and configuration
@@ -30,13 +30,12 @@ A python script to play sound effects when a certain command is typed in the use
 - Find audio device for output using sounddevice and change "output_device_name" accordingly
 - Enter path for the directory of sound effects in "audio_path"
 - Enter livestreaming accounts username in "username"
-- Change "keyword_dict" according the needed commands and filenames with extensions. I believe both .mp3 files and .wav are supported, only tested with .mp3
+- Change "keyword_dict" according the needed commands and filenames with extensions. Pygame supports .mp3 and .wav
 
 ## Usage
 - Run from IDE or from terminal/shell by cd into the project path and running with "python main.py" alternatively "python3 main.py"
 
 ## Possible future improvements
-- Layering sound, currently sounds cut eachother off (can be configured to play in queue) but a wall of noise could be interesting
 - Cooldowns to stop chatters from playing more than X sounds a minute
 - Logging to see which sounds are played the most/least
 - Per chat volume scaling ie. "!sound 10" would play sound at 10% volume
